@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create country</title>
+</head>
+<body>
+            <h1>Create country</h1>
+            <p>
+                <button type="button" onclick="window.location.href='/countries'">Country List</button>
+            </p>
+            <th:block th:if="${message}">
+                <p th:text="${message}"></p>
+            </th:block>
+            <form th:action="@{/create-country}" th:object="${country}" method="post" id="form">
+                <table>
+                    <tr>
+                        <td>Name:</td>
+                        <td><input type="text" th:field="*{countryName}"/></td>
+                        <td th:if="${#fields.hasErrors('countryName')}" th:errors="*{countryName}">Name error</td>
+                    </tr>
+                    <tr>
+                        <td>Description:</td>
+                        <td><input type="text" th:field="*{description}"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Create country"></td>
+                    </tr>
+                </table>
+            </form>
+
+
+</body>
+</html>
